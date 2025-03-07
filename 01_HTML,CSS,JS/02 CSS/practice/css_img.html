@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.imgDiv {
+				border: 5px dashed rosybrown;
+				width: 200px;
+				height: 200px;
+				overflow: hidden;
+				margin: 100px;
+			}
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				transition: all 0.35s ease;
+			}
+			.imgDiv:hover img {
+				transform: scale(2);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="imgDiv">
+			<img src="../assets/quokka.jpg" alt="쿼카" />
+		</div>
+	</body>
+</html>
