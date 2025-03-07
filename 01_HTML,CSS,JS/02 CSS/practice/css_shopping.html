@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			body {
+				display: flex;
+				justify-content: center;
+				background-color: white;
+				color: chocolate;
+			}
+			.container {
+				text-align: center;
+				background-color: antiquewhite;
+				padding: 0 10px 0 10px;
+			}
+			.top_bar {
+				width: 550px;
+				display: flex;
+				gap: 10px;
+				margin-bottom: 40px;
+			}
+			.top_bar a {
+				width: 25%;
+				padding: 10px;
+				border: none;
+				background-color: rgba(210, 105, 30, 0.514);
+				color: white;
+				border-radius: 10px;
+				text-decoration: none;
+				font-weight: 600;
+				transition: all 0.1s ease;
+			}
+			.top_bar a:hover {
+				transform: scale(1.05);
+			}
+			.section1 img {
+				transition: all 0.35s ease;
+			}
+			.section1 img:hover {
+				transform: scale(1.05);
+			}
+			.section1 h4 {
+				margin: 10px 0;
+			}
+			.line {
+				background-color: burlywood;
+				height: 1px;
+				margin: 50px;
+			}
+			.info {
+				width: 550px;
+			}
+			.single {
+				margin: 20px;
+				padding: 10px;
+				display: flex;
+				background-color: rgba(210, 105, 30, 0.514);
+				border-radius: 20px;
+				color: white;
+				transition: all 0.35s ease;
+			}
+			.single:hover {
+				transform: scale(1.05);
+			}
+			.single div {
+				margin-left: 50px;
+				text-align: left;
+			}
+			.single img {
+				width: 100px;
+				border-radius: 50%;
+				border: 2px solid antiquewhite;
+			}
+			.bottom_bar {
+				background-color: chocolate;
+				color: white;
+				border-radius: 50%;
+				position: fixed;
+				bottom: 20px;
+				right: 150px;
+				text-decoration: none;
+				padding: 10px;
+				font-weight: 600;
+			}
+			.section3 {
+				margin: 60px 0 30px 0;
+			}
+			.review {
+				margin-top: 20px;
+				padding: 20px;
+				display: flex;
+				width: 550px;
+				background-color: white;
+				border: 2px solid burlywood;
+				border-radius: 20px;
+			}
+			.review img {
+				width: 80px;
+				height: 80px;
+				border-radius: 10px;
+				margin-right: 3px;
+			}
+			.review img:hover {
+				transform: scale(0.9);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="top_bar">
+				<a href="#info">상품설명</a>
+				<a href="#detail">상세정보</a>
+				<a href="#review">후기(31,648)</a>
+				<a>문의</a>
+			</div>
+			<div class="section1">
+				<img src="../assets/cookiebar_bg2.jpg" />
+				<h4>달콤바삭으로 무장한 텁텁 ZERO 쿠키바</h4>
+				<h3>랩노쉬 프로틴 쿠키바 4종</h3>
+			</div>
+			<div class="line"></div>
+			<img class="info" id="info" src="../assets/cookiebar_bg3.jpg" />
+			<div class="line"></div>
+			<div class="section2" id="detail">
+				<h2>쿠키바 4종 상세 설명</h2>
+				<div class="single">
+					<img src="../assets/cookiebar_single1.jpg" />
+					<div>
+						<h3>밀크티</h3>
+						<br />
+						<h4>홍차와 초코의 진한 콜라보</h4>
+						<h6>* 단백질 7g(13%)</h6>
+					</div>
+				</div>
+				<div class="single">
+					<img src="../assets/cookiebar_single2.jpg" />
+					<div>
+						<h3>블랙쿠키</h3>
+						<br />
+						<h4>진한 코코아의 고급스러운 달콤함</h4>
+						<h6>* 단백질 7g(13%)</h6>
+					</div>
+				</div>
+				<div class="single">
+					<img src="../assets/cookiebar_single3.jpg" />
+					<div>
+						<h3>쿠키앤크림</h3>
+						<br />
+						<h4>은은한 바닐라 크림의 부드러움</h4>
+						<h6>* 단백질 4g(7%)</h6>
+					</div>
+				</div>
+				<div class="single">
+					<img src="../assets/cookiebar_single4.jpg" />
+					<div>
+						<h3>피넛버터</h3>
+						<br />
+						<h4>땅콩버터의 풍미있는 고소함</h4>
+						<h6>* 단백질 7g(13%)</h6>
+					</div>
+				</div>
+			</div>
+			<div class="section3" id="review">
+				<h2>상품후기</h2>
+				<div class="review">
+					<img src="../assets/cookiebar_review1.webp" />
+					<img src="../assets/cookiebar_review2.webp" />
+					<img src="../assets/cookiebar_review3.webp" />
+					<img src="../assets/cookiebar_review4.webp" />
+				</div>
+			</div>
+		</div>
+		<a href="#" class="bottom_bar">TOP</a>
+	</body>
+</html>
