@@ -5,8 +5,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
 		<script>
-			alert("hello JavaScript..! I'm Bingbong");
-			console.log("hello JavaScript..! I'm Bingbong");
+			document.write("<pre>");
+			for (let i = 1; i <= 9; i++) {
+				for (let j = 2; j <= 9; j++) {
+					document.write(`${j}*${i}=${j * i}`.padEnd(10));
+				}
+				document.write("<br>");
+			}
+			document.write("</pre>");
 		</script>
 	</head>
 	<body></body>

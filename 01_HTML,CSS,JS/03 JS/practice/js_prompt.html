@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			body {
+				text-align: center;
+			}
+			p {
+				color: brown;
+			}
+		</style>
+		<script>
+			let num = prompt("몇까지의 3의 배수를 찾는가?");
+
+			document.writeln("<h1>3의 배수 찾기</h1>");
+
+			let i = 3;
+			let sum = 0;
+			let count = 0;
+
+			document.write("<span>");
+			while (i < num) {
+				document.write(i + ", ");
+				count++;
+				sum += i;
+				i += 3;
+			}
+			document.write("</span>");
+
+			document.write(`<p>${num}까지의 3의 배수의 갯수 : ${count}</p>`);
+			document.write(`<p>${num}까지의 3의 배수의 합 : ${sum}</p>`);
+		</script>
+	</head>
+	<body></body>
+</html>
