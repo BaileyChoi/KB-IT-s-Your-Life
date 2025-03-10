@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script>
+			let array = [1, 10, 20, , 30, , 60];
+
+			console.log("> 일반 for문");
+			for (let i = 0; i < array.length; i++) {
+				console.log(array[i]);
+			}
+
+			console.log("> for문 - in");
+			for (let i in array) {
+				console.log(i, array[i]);
+			}
+
+			console.log("> for문 - of");
+			for (let i of array) {
+				console.log(i, array[i]);
+			}
+		</script>
+	</head>
+	<body></body>
+</html>
