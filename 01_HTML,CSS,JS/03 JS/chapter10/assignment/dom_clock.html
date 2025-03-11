@@ -10,7 +10,28 @@
 
 				setInterval(function () {
 					let now = new Date();
-					clock.innerHTML = now.toString();
+
+					let days = ["일", "월", "화", "수", "목", "금", "토"];
+					let yy = now.getFullYear();
+					let mm = now.getMonth() + 1;
+					let dd = now.getDate();
+					let i = now.getDay();
+					let day = days[i];
+
+					let hh = now.getHours();
+					let mi = now.getMinutes();
+					let ss = now.getSeconds();
+
+					let result = `현재시각) ${yy}-${mm}-${dd} ${day}요일 ${hh}:${mi}:${ss}`;
+
+					clock.innerHTML =
+						now.toLocaleString("en-US") +
+						"<br>" +
+						now.toLocaleString("ko-KR") +
+						"<br>" +
+						result +
+						"<br>" +
+						now.toLocaleString("ja-JP");
 				}, 1000);
 
 				clock.style.color = "white";
