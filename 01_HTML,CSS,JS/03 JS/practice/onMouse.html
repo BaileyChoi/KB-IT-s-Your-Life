@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script>
+			function showResult() {
+				let output = document.getElementById("question");
+				output.innerHTML = 10 + 50;
+				output.style.color = "brown";
+			}
+
+			function hideResult() {
+				let output = document.getElementById("question");
+				output.innerHTML = "?";
+				output.style.color = "black";
+			}
+		</script>
+	</head>
+	<body>
+		<h1
+			onmouseover="showResult()"
+			onmouseout="hideResult()"
+			style="border: 1px solid brown"
+		>
+			10 + 50 = <span id="question">?</span>
+		</h1>
+		<p>결과를 보시려면 수식 위에 마우스를 올리세요.</p>
+	</body>
+</html>

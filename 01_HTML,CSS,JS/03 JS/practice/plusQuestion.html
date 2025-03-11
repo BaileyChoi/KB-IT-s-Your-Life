@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script>
+			function generateQ() {
+				let q = document.getElementById("question");
+
+				let a = Math.floor(Math.random() * 10) + 1;
+				let b = Math.floor(Math.random() * 10) + 1;
+
+				q.innerHTML = `<span id="num1">${a}</span> + <span id="num2">${b}</span> = <span id="answer">?</span>`;
+			}
+
+			function seeA() {
+				let a = document.getElementById("answer");
+
+				let num1 = Number(document.getElementById("num1").innerHTML);
+				let num2 = Number(document.getElementById("num2").innerHTML);
+
+				a.innerHTML = num1 + num2;
+				a.style.color = "brown";
+			}
+		</script>
+	</head>
+	<body>
+		<h3>1 ~ 10 사이의 덧셈 문제를 발생합니다.</h3>
+		<button onclick="generateQ()">문제 생성</button>
+		<h3>결과보기 버튼을 누르면 답이 빨간색으로 보인다.</h3>
+		<h3 id="question">
+			<span id="sum"></span>
+		</h3>
+		<button onclick="seeA()">결과 보기</button>
+	</body>
+</html>

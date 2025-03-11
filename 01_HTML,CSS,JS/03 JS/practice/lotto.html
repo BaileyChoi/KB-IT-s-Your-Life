@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			body {
+				text-align: center;
+			}
+			div {
+				display: inline-block;
+				width: 100px;
+				height: 100px;
+				font-size: 50px;
+				border-radius: 50%;
+				padding-top: 7px;
+			}
+		</style>
+		<script>
+			function start() {
+				let nums = [];
+				for (let i = 0; i < 6; i++) {
+					let num = Math.floor(Math.random() * 45) + 1;
+					nums[i] = num;
+				}
+
+				nums.sort((a, b) => a - b);
+
+				for (let i = 0; i < 6; i++) {
+					let num = nums[i];
+					let ball = document.getElementById(`num${i + 1}`);
+					ball.innerHTML = num;
+					if (num < 10) {
+						ball.style.backgroundColor = "red";
+					} else if (num < 20) {
+						ball.style.backgroundColor = "yellow";
+					} else if (num < 30) {
+						ball.style.backgroundColor = "green";
+					} else if (num < 40) {
+						ball.style.backgroundColor = "blue";
+					} else {
+						ball.style.backgroundColor = "purple";
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h1>로또 번호를 생성하세요</h1>
+		<input type="button" value="번호 생성" onclick="start()" />
+		<br />
+		<br />
+		<div id="num1"></div>
+		<div id="num2"></div>
+		<div id="num3"></div>
+		<div id="num4"></div>
+		<div id="num5"></div>
+		<div id="num6"></div>
+	</body>
+</html>
