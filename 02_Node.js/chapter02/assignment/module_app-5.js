@@ -1,3 +1,3 @@
-import { goodbye } from "./goodbye-1.js";
+import { goodbye } from "./module_goodbye-1.js";
 
 goodbye("bingbong");

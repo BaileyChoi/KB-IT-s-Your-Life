@@ -1,4 +1,4 @@
-import { hi, goodbye } from "./greeting-1.js";
+import { hi, goodbye } from "./module_greeting-1.js";
 
 hi("bingbong");
 goodbye("Bingbong");
