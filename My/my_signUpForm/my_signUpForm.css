@@ -23,35 +23,37 @@ body {
 	justify-content: center;
 	align-items: center;
 	font-family: "Poppins", sans-serif;
-	font-size: 16px;
+	font-size: 1.2rem;
 }
 
 .container {
 	display: flex;
-	margin: 20px 0;
+	margin: 0 22rem;
 }
 
 .text-content {
 	display: flex;
 	flex-direction: column;
-	text-align: left;
-	width: 50%;
-	margin-right: 70px;
+	justify-content: center;
+	width: 65%;
 }
 .text-content h2 {
 	color: var(--White);
 	font-size: 3rem;
 	font-weight: 700;
+	width: 80%;
 }
 .text-content p {
+	margin-top: 2rem;
 	color: var(--White);
 	font-weight: 500;
 	line-height: 26px;
 	word-wrap: break-word;
+	width: 80%;
 }
 
 .form {
-	width: 50%;
+	width: 45%;
 }
 
 .trial {
@@ -80,22 +82,56 @@ form {
 	box-shadow: 0 8px 0 0 rgba(0, 0, 0, 0.13);
 	display: flex;
 	flex-direction: column;
-	padding: 30px 40px;
+	padding: 40px 50px;
+}
+form .inputWrap {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 15px;
 }
 form input {
-	border: 1px solid var(--grayish-blue);
+	border: none;
 	border-radius: 5px;
-	height: 3rem;
+	height: 3.8rem;
 	padding-left: 1rem;
 	font-weight: 600;
-	margin-bottom: 10px;
+	font-size: 1rem;
+	color: var(--dark-blue);
+	margin-bottom: 6px;
+}
+form input:focus {
+	outline: 0.3px solid var(--dark-blue);
+}
+.input.empty {
+	border: 0.3px solid var(--Red);
+	background-image: url("./images/icon-error.svg");
+	background-repeat: no-repeat;
+	background-position: right 15px center;
+}
+form .inputTxt {
+	text-align: end;
+	color: var(--Red);
+	font-size: 0.7rem;
 }
 .submitBtn {
 	background-color: var(--Green);
 	color: var(--White);
 	text-transform: uppercase;
+	box-shadow: 0 3px 0 0 hsl(154, 56%, 45%);
+	border: none;
+	word-spacing: 0.2rem;
+	font-weight: 500;
+	text-align: center;
 }
+.submitBtn:focus {
+	position: relative;
+	outline: none;
+	box-shadow: none;
+	top: 3px;
+}
+
 .term {
+	margin-top: 15px;
 	display: flex;
 	justify-content: center;
 	color: var(--grayish-blue);
