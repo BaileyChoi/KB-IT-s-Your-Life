@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.movie {
+				background-color: blanchedalmond;
+				border: 3px solid rgb(172, 134, 85);
+				border-radius: 20px;
+				padding: 0 20px;
+				margin-bottom: 10px;
+			}
+			input {
+				margin-bottom: 20px;
+			}
+			h1,
+			h3,
+			.movie h4,
+			.movie h3 {
+				color: rgb(172, 134, 85);
+			}
+		</style>
+		<script>
+			async function getRanking() {
+				const date = document.getElementById("date").value.replace(/-/g, "");
+				console.log(date);
+
+				const apiKey = "1598b0073b8ecf245a8a7ba6603e4772";
+
+				try {
+					const response = await fetch(
+						`http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${apiKey}&targetDt=${date}`
+					);
+					const data = await response.json();
+					const movies = data.boxOfficeResult.dailyBoxOfficeList;
+					console.log(movies);
+
+					if (movies.length === 0) {
+						document.getElementById("result").innerHTML =
+							"<h3>랭킹 불러오기를 실패하였습니다.</h3>";
+					} else {
+						document.getElementById("result").innerHTML = movies
+							.map(
+								(movie) => `
+                                <div class="movie">
+							        <h4>${movie.rank}위</h4>
+							        <h3>${movie.movieNm}</h3>
+						        </div>`
+							)
+							.join("");
+					}
+				} catch (err) {
+					console.log("랭킹을 불러오는 것을 실패하였습니다.", err);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div>
+			<h1>날짜별 영화 랭킹 사이트</h1>
+			<input type="date" id="date" />
+			<button onclick="getRanking()">랭킹 보기</button>
+		</div>
+		<div id="result"></div>
+	</body>
+</html>
