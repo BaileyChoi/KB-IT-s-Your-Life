@@ -1,0 +1,173 @@
+@import url();
+
+:root {
+	--bright-cream: rgb(248, 243, 217);
+	--Cream: rgb(235, 229, 194);
+	--light-brown: rgb(185, 178, 138);
+	--Brown: rgb(80, 75, 56);
+	--light-grey: hsl(217, 12%, 63%);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: whitesmoke;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+
+.container {
+	padding: 20px 60px;
+	border-radius: 20px;
+	box-shadow: 0 5px 50px 3px var(--light-brown);
+}
+
+.intro {
+	text-align: center;
+	margin-bottom: 40px;
+}
+.intro h3 {
+	color: var(--Brown);
+	font-weight: 900;
+	font-size: 23px;
+}
+.intro span {
+	font-size: 18px;
+	color: var(--light-grey);
+}
+
+form fieldset {
+	border: none;
+	margin-top: 15px;
+}
+form legend {
+	color: var(--Brown);
+	font-size: 18px;
+	font-weight: 600;
+	margin-bottom: 8px;
+}
+
+.textUrl p {
+	font-size: 15px;
+	color: var(--light-grey);
+	margin-bottom: 5px;
+}
+.textUrl input {
+	border: 2px solid var(--light-brown);
+	border-radius: 5px;
+	width: 100%;
+	font-size: 16px;
+	padding: 5px;
+	justify-self: center;
+}
+
+form .color {
+	display: flex;
+	justify-content: center;
+}
+.color div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.color span {
+	color: var(--Brown);
+	font-size: 18px;
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+.color input {
+	height: 3rem;
+	width: 3rem;
+	cursor: pointer;
+}
+.color p {
+	font-size: 16px;
+	color: var(--light-grey);
+	font-weight: 600;
+}
+.mainColor {
+	margin-right: 8rem;
+}
+
+.size p,
+.margin p {
+	font-size: 16px;
+	color: var(--light-grey);
+	font-weight: 600;
+}
+.size input,
+.margin input {
+	width: 100%;
+}
+.size input,
+.margin input {
+	-webkit-appearance: none;
+	background-color: var(--light-brown);
+
+	height: 4px;
+	cursor: pointer;
+	border-radius: 2px;
+}
+.size input::-webkit-slider-thumb,
+.margin input::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	height: 18px;
+	width: 18px;
+	border-radius: 9px;
+	background-color: var(--Brown);
+}
+
+form .imageFormat {
+	display: flex;
+	justify-content: center;
+	gap: 30px;
+}
+.imageFormat div {
+	border: 2px solid var(--light-brown);
+	border-radius: 5px;
+	padding: 5px 8px;
+	display: flex;
+	justify-content: center;
+	cursor: pointer;
+}
+.imageFormat label {
+	margin-left: 10px;
+	color: var(--light-grey);
+	font-weight: 600;
+}
+
+.submitWrap {
+	display: flex;
+	justify-content: center;
+	margin-top: 15px;
+}
+form .submit {
+	background-color: var(--light-brown);
+	color: var(--Brown);
+	border: none;
+	border-radius: 8px;
+	padding: 0.5rem 1.2rem;
+	font-size: 20px;
+	font-weight: 700;
+	margin-top: 1.6rem;
+	box-shadow: 0 2px 5px 0 var(--Brown);
+	cursor: pointer;
+}
+
+/* QR code */
+#qrCodeContainer {
+	text-align: center;
+	margin-top: 20px;
+}
+
+#qrCodeContainer img {
+	max-width: 100%;
+	border: 3px solid var(--light-brown);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
