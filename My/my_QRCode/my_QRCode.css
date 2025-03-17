@@ -145,9 +145,10 @@ form .imageFormat {
 .submitWrap {
 	display: flex;
 	justify-content: center;
-	margin-top: 15px;
+	margin-top: 2rem;
 }
-form .submit {
+form .submit,
+form .reset {
 	background-color: var(--light-brown);
 	color: var(--Brown);
 	border: none;
@@ -155,19 +156,52 @@ form .submit {
 	padding: 0.5rem 1.2rem;
 	font-size: 20px;
 	font-weight: 700;
-	margin-top: 1.6rem;
 	box-shadow: 0 2px 5px 0 var(--Brown);
 	cursor: pointer;
+}
+form .reset {
+	margin-left: 25px;
+}
+
+/* Modal */
+#modal {
+	display: none;
+	flex-direction: column;
+	position: absolute;
+	justify-content: center;
+	background-color: var(--bright-cream);
+	border-radius: 10px;
+	box-shadow: 0 5px 50px 3px var(--light-brown);
+	padding: 20px;
+}
+#modal .closeBtn {
+	border: none;
+	color: var(--Brown);
+	margin-left: auto;
+	margin-right: 10px;
+	font-size: 1.6rem;
+	background-color: transparent;
+	cursor: pointer;
+}
+#modal .downloadBtn {
+	background-color: var(--light-brown);
+	color: var(--Brown);
+	border: none;
+	border-radius: 8px;
+	padding: 0.5rem 1.2rem;
+	font-size: 1rem;
+	font-weight: 700;
+	box-shadow: 0 2px 5px 0 var(--Brown);
+	cursor: pointer;
+	margin-bottom: 10px;
 }
 
 /* QR code */
 #qrCodeContainer {
 	text-align: center;
-	margin-top: 20px;
+	margin: 20px 0;
 }
 
 #qrCodeContainer img {
-	max-width: 100%;
 	border: 3px solid var(--light-brown);
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }

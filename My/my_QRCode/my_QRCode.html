@@ -39,8 +39,8 @@
 						type="range"
 						id="size"
 						min="100"
-						max="1000"
-						step="100"
+						max="500"
+						step="50"
 						value="200"
 					/>
 				</fieldset>
@@ -52,32 +52,36 @@
 				<fieldset class="imageFormat">
 					<legend>Image Format</legend>
 					<div>
-						<input type="radio" id="PNG" name="imageFormat" value="PNG" />
+						<input type="radio" id="PNG" name="imageFormat" value="png" />
 						<label for="PNG">PNG</label>
 					</div>
 					<div>
-						<input type="radio" id="GIF" name="imageFormat" value="GIF" />
+						<input type="radio" id="GIF" name="imageFormat" value="gif" />
 						<label for="GIF">GIF</label>
 					</div>
 					<div>
-						<input type="radio" id="JPEG" name="imageFormat" value="JPEG" />
+						<input type="radio" id="JPEG" name="imageFormat" value="jpeg" />
 						<label for="JPEG">JPEG</label>
 					</div>
 					<div>
-						<input type="radio" id="JPG" name="imageFormat" value="JPG" />
+						<input type="radio" id="JPG" name="imageFormat" value="jpg" />
 						<label for="JPG">JPG</label>
 					</div>
 					<div>
-						<input type="radio" id="SVG" name="imageFormat" value="SVG" />
+						<input type="radio" id="SVG" name="imageFormat" value="svg" />
 						<label for="SVG">SVG</label>
 					</div>
 				</fieldset>
 				<div class="submitWrap">
 					<input type="submit" class="submit" value="Generate QR code" />
+					<input type="reset" class="reset" value="Reset" />
 				</div>
 			</form>
-
+		</div>
+		<div id="modal">
+			<button class="closeBtn">x</button>
 			<div id="qrCodeContainer"></div>
+			<button class="downloadBtn">Download Your QR code</button>
 		</div>
 		<script src="my_QRCode.js"></script>
 	</body>
