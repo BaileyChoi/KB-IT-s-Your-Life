@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			#list {
+				width: 100%;
+				border: 1px solid black;
+				border-collapse: collapse;
+			}
+			.list caption {
+				font-size: 24px;
+				font-weight: bold;
+				margin-bottom: 10px;
+			}
+			#list td,
+			#list th {
+				border: 1px solid black;
+				text-align: center;
+			}
+			#list > thead > tr {
+				color: black;
+				background-color: gray;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<table id="list">
+				<caption>
+					신상명세서
+				</caption>
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>이름</th>
+						<th>나이</th>
+						<th>주소</th>
+						<th>동의여부</th>
+					</tr>
+				</thead>
+				<tbody>
+					<template v-for="(person, index) in list" :key="person.seq">
+						<tr>
+							<td>{{person.seq}}</td>
+							<td>{{person.name}}</td>
+							<td>{{person.age}}</td>
+							<td>{{person.addr}}</td>
+							<td>{{person.done ? "동의" : "비동의"}}</td>
+						</tr>
+					</template>
+				</tbody>
+			</table>
+		</div>
+
+		<script src="https://unpkg.com/vue"></script>
+		<script>
+			const app = Vue.createApp({
+				name: "App",
+				data() {
+					return {
+						list: [
+							{ seq: 1, name: "홍길동", age: 20, addr: "서울", done: true },
+							{ seq: 2, name: "라이언", age: 25, addr: "제주", done: true },
+							{ seq: 3, name: "네오", age: 26, addr: "울산", done: false },
+							{ seq: 4, name: "프로도", age: 22, addr: "부산", done: true },
+							{ seq: 5, name: "코난", age: 28, addr: "경기", done: false },
+						],
+					};
+				},
+			});
+
+			app.mount("#app");
+		</script>
+	</body>
+</html>
