@@ -7,7 +7,7 @@ export default {
 	props: {
 		todoList: { type: Array, required: true },
 	},
-	emits: ["delete-todo", "toggleW-completed"],
+	emits: ["delete-todo", "toggle-completed"],
 };
 </script>
 
