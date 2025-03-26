@@ -1,5 +1,6 @@
 <script>
 import CheckBox2 from "./CheckBox2.vue";
+
 export default {
 	name: "SlotTest",
 	components: { CheckBox2 },

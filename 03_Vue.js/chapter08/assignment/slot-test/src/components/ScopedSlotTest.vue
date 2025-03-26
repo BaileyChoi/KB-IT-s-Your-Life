@@ -1,5 +1,6 @@
 <script>
 import CheckBoxList from "./CheckBoxList.vue";
+
 export default {
 	name: "ScopedSlotTest",
 	components: { CheckBoxList },

@@ -1,5 +1,6 @@
 <script>
 import CheckBox1 from "./CheckBox1.vue";
+
 export default {
 	name: "NoSlotTest",
 	components: { CheckBox1 },
