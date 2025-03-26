@@ -1,36 +1,37 @@
 <script>
 export default {
-	name: "GalleryListItem",
-	props: { image: Object },
+  name: "GalleryListItem",
+  props: ["image"],
+  inject: ["setSelectedImage"],
 };
 </script>
 
 <template>
-	<li class="gallery-item" @click="$emit('click')">
-		<img :src="image.img" :alt="image.title" class="thumbnail" />
-		<p>{{ image.title }}</p>
-	</li>
+  <li class="gallery-item" @click="setSelectedImage(image)">
+    <img :src="image.img" class="item-img" />
+    <p>{{ image.title }}</p>
+  </li>
 </template>
 
 <style>
 .gallery-item {
-	cursor: pointer;
-	text-align: center;
-	padding: 10px;
-	border: 1px solid #ddd;
-	border-radius: 5px;
-	transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  transition: transform 0.2s box-shadow 0.2s;
 }
 
 .gallery-item:hover {
-	transform: scale(1.05);
-	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
 
-.thumbnail {
-	width: 100px;
-	height: 100px;
-	object-fit: cover;
-	border-radius: 5px;
+.item-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 </style>
