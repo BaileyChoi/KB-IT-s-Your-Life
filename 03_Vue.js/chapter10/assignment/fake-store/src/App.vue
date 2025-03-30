@@ -1,7 +1,15 @@
-<script setup></script>
+<script setup>
+import DefaultLayout from "./components/layouts/DefaultLayout.vue";
+import Header from "./components/layouts/Header.vue";
+import NavBar from "./components/layouts/NavBar.vue";
+import Footer from "./components/layouts/Footer.vue";
+</script>
 
-<template></template>
-
-<style>
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
-</style>
+<template>
+  <DefaultLayout>
+    <template v-slot:header><Header /></template>
+    <template v-slot:navbar><NavBar /></template>
+    <template v-slot:default><RouterView /></template>
+    <template v-slot:footer><Footer /></template>
+  </DefaultLayout>
+</template>

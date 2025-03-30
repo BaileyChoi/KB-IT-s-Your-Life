@@ -1,12 +1,5 @@
-<script>
-export default {
-	name: "ElectronicPage",
-	setup() {},
-};
-</script>
+<script setup></script>
 
 <template>
-	<div class="card card-body">
-		<h2>ElectronicPage</h2>
-	</div>
+  <h1><i class="fa-solid fa-tv"></i> 가전</h1>
 </template>

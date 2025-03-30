@@ -1,12 +1,5 @@
-<script>
-export default {
-	name: "HomePage",
-	setup() {},
-};
-</script>
+<script setup></script>
 
 <template>
-	<div class="card card-body">
-		<h2>HomePage</h2>
-	</div>
+  <h1>홈페이지</h1>
 </template>

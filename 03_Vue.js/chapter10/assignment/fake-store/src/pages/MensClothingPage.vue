@@ -1,12 +1,5 @@
-<script>
-export default {
-	name: "MensClothingPage",
-	setup() {},
-};
-</script>
+<script setup></script>
 
 <template>
-	<div class="card card-body">
-		<h2>MensClothingPage</h2>
-	</div>
+  <h1><i class="fa-solid fa-mars"></i> 남성의류</h1>
 </template>

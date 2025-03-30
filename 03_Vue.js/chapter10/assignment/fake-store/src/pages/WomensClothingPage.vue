@@ -1,12 +1,5 @@
-<script>
-export default {
-	name: "WomensClothingPage",
-	setup() {},
-};
-</script>
+<script setup></script>
 
 <template>
-	<div class="card card-body">
-		<h2>WomensClothingPage</h2>
-	</div>
+  <h1><i class="fa-solid fa-venus"></i> 여성의류</h1>
 </template>
