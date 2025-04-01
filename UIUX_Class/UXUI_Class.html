@@ -1,0 +1,84 @@
+<html lang="en">
+	<body>
+		<!--
+
+        웹 접근성을 지키는 방법? 
+        1. 시맨틱 태그 (header, man, nav, section, article,footer, aside...) 
+        -> HTML4 -> HTML5 
+        -> 태그 자체에 의미를 부여하는 것, 
+        -> div 
+        
+        2. WAI-ARIA (HTML 태그에서 사용할 수 있는 속성) 
+        -> HTML 만으로는 접근성을 표현하기 어려운 동적 콘텐츠를 보완하기 위한 속성 
+        -> (슈퍼 고급) 
+        -> role : 요소의 역할을 지정할 때 
+        -> aria-label: 시각적 텍스트 대신 스크린 리더용 설명을 제공 
+        -> aria-labelledby: 다른 요소를 설명 텍스트로 사용 
+        -> aria-hidden: 보조 기술(스크린리더기) 무시하게 하는 속성 
+        -> aria-expanded: 확장/축소 가능 여부를 표시하기 속성 
+        -> aria-selected: 현재 선택된 항목 표시 속성 
+        -> aria-describedby: 어떤 요소를 설명할 때 사용하는 속성 
+        
+        -->
+
+		<!-- aria-label -->
+		<button>확인</button>
+		<button aria-label="확인">✅</button>
+		<h2 id="form-title">회원 가입 양식</h2>
+		<p>로그인으로 서비스를 모두 이용하세요</p>
+
+		<!-- aria-labelledby -->
+		<form aria-labelledby="form-title">
+			<lable for="">이메일: <input type="email" /></lable>
+		</form>
+
+		<!-- aria-hidden -->
+		<span aria-hidden="true">⭐</span>
+		<span>즐겨찾기</span>
+
+		<!-- aria-expanded -->
+		<hr />
+		<button aria-expanded="true">메뉴</button>
+		<div id="menu">
+			<ul>
+				<li>홈</li>
+				<li>서비스</li>
+			</ul>
+		</div>
+
+		<!-- aria-selected -->
+		<div class="tablist">
+			<button role="tab" aria-selected="true">탭1</button
+			><button role="tab" aria-selected="false">탭2</button>
+		</div>
+		<br />
+
+		<!-- aria-describedby- -->
+		<button aria-describedby="desc">삭제</button>
+		<p id="desc">이 버튼을 누르면 항목이 영구적으로 삭제됩니다.</p>
+
+		<!-- 
+        1. 성능 최적화(페이지 로딩 속도를 최적화)
+        1.1 성능 최적화가 중요한 이유
+        1.1.1 사용자 이탈율이 감소 (로딩이 1초가 늦어지면 이탈율 32% 증가)
+        1.1.2 검색 엔진 최적화(SEO) 긍정적인 영향
+        1.1.3 사용자 만족도가 올라갈테니까, 전환율이 향상
+        -> 인터넷 뱅킹 -> 토스 (금융을 쉽게)
+
+        2. 성능 최적화 방법
+        2.1 이미지 최적화
+        2.1.1 jpeg, png -> 압축해서 사용 (1M, -> 3초) (100kb -> 0.02초)
+        2.2 폰트 최적화
+        2.2.1 언어셋, 대부분의 폰트는 모든 언어셋
+        2.2.2 Noto Sans -> 영어, 프랑스어, 베트남어, 독일어, 한국어 포함
+        2.3 불필요한 리렌더링을 최소화
+        2.3.1 리렌더링을 최적화함(Vue), 리액트는 아님
+        2.4 Lazy Load -> 지연 로딩 (리소스를 지연해서 로딩)
+        2.5 성능 측정 도구 (LightHouse)
+
+        이미지 사이트
+         - pixabay.com (이미지 다운)
+         - tinypng.com (이미지 압축)
+        -->
+	</body>
+</html>
