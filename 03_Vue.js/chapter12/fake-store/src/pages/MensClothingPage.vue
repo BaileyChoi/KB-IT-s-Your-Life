@@ -1,25 +1,23 @@
 <script setup>
 import { get } from "@/api/product";
-import ProductList from "@/components/ProductList.vue";
-import { computed } from "vue";
-import { reactive, provide } from "vue";
+import ProductAddButton from "@/components/product/ProductAddButton.vue";
+import ProductList from "@/components/product/ProductList.vue";
+import { reactive } from "vue";
 
-const states = reactive({ productList: [] });
+const category = "men's clothing";
+const state = reactive({ productList: [] });
 
 const fetchProducts = async () => {
-	const response = await get("/category/men's clothing");
-	states.productList = response.data;
+  state.productList = await get("/category/" + category);
 };
-
-provide(
-	"productList",
-	computed(() => states.productList)
-);
 
 fetchProducts();
 </script>
 
 <template>
-	<h1><i class="fa-solid fa-mars"></i> 남성의류</h1>
-	<ProductList />
+  <h1><i class="fa-solid fa-mars"></i> 남성의류</h1>
+  <div class="pt-3">
+    <ProductList :products="state.productList" />
+    <ProductAddButton :category="category" />
+  </div>
 </template>
