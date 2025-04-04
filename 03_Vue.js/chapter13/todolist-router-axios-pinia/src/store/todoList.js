@@ -13,12 +13,13 @@ export const useTodoListStore = defineStore("todoList", () => {
 			const response = await axios.get(BASEURI);
 			if (response.status === 200) {
 				states.todoList = response.data;
-				states.isLoading = false;
 			} else {
 				alert("데이터를 불러오는데 실패했습니다.");
 			}
 		} catch (error) {
 			alert("에러발생 :" + error);
+		} finally {
+			states.isLoading = false;
 		}
 	};
 
