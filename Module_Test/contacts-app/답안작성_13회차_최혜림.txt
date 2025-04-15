@@ -1,0 +1,444 @@
+문제1] 프로젝트 생성 및 초기화 명령
+npm init vue (Project name: contacts-app)
+npm i
+npm i axios vue-router
+npm run dev
+
+server: {
+		proxy: {
+			"/api": {
+				target: "http://localhost:3000",
+				changeOrigin: true,
+				rewrite: (path) => path.replace(/^\/api/, ""),
+			},
+		},
+	},
+
+문제2] json-server 실행 명령
+npx json-server contacts.json
+
+문제3-1] src/router/index.js 작성
+import ContactDetailPage from "@/components/ContactDetailPage.vue";
+import ContactEditPage from "@/components/ContactEditPage.vue";
+import ContactListPage from "@/components/ContactListPage.vue";
+import ContactWritePage from "@/components/ContactWritePage.vue";
+import { createRouter, createWebHistory } from "vue-router";
+
+const router = createRouter({
+	history: createWebHistory(import.meta.env.BASE_URL),
+	routes: [
+		{
+			path: "/",
+			name: "home",
+			redirect: "/contacts",
+		},
+		{
+			path: "/contacts",
+			name: "contacts",
+			component: ContactListPage,
+		},
+		{
+			path: "/contacts/detail/:id",
+			name: "contacts/detail",
+			component: ContactDetailPage,
+		},
+		{
+			path: "/contacts/write",
+			name: "contacts/write",
+			component: ContactWritePage,
+		},
+		{
+			path: "/contacts/edit/:id",
+			name: "contacts/edit",
+			component: ContactEditPage,
+		},
+	],
+});
+
+export default router;
+
+
+문제3-2] src/App.vue 작성
+<script setup></script>
+
+<template>
+	<router-view></router-view>
+</template>
+
+<style scoped></style>
+
+문제4] src/pages/ContactListPage.vue 작성
+<script setup>
+import axios from "axios";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const contacts = ref([]);
+
+const fetchContacts = async () => {
+	const BASEURL = "/api/contacts";
+	try {
+		const response = await axios.get(BASEURL);
+		contacts.value = response.data;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+fetchContacts();
+</script>
+
+<template>
+	<div class="m-2">
+		<h3><i class="fa-solid fa-address-book"></i> 연락처</h3>
+		<br />
+		<table>
+			<tr>
+				<th>id</th>
+				<th>name</th>
+				<th>tel</th>
+			</tr>
+			<tr v-for="c in contacts" :key="c.id">
+				<td>{{ c.id }}</td>
+				<td>
+					<img :src="c.photo" alt="photo" class="rounded-circle" width="20" />
+					<router-link :to="'/contacts/detail/' + c.id">{{
+						c.name
+					}}</router-link>
+				</td>
+				<td>{{ c.tel }}</td>
+			</tr>
+		</table>
+		<button
+			class="btn btn-sm btn-primary"
+			@click="router.push('/contacts/write')"
+		>
+			<i class="fa-solid fa-pen-to-square"></i> 새 연락처
+		</button>
+	</div>
+</template>
+
+<style scoped>
+table {
+	width: 100%;
+}
+button {
+	float: right;
+	margin-right: 20px;
+}
+</style>
+
+
+
+문제5] src/pages/ContactDetailPage.vue 작성
+<script setup>
+import axios from "axios";
+import { useRoute, useRouter } from "vue-router";
+import { ref } from "vue";
+
+const route = useRoute();
+const router = useRouter();
+const BASEURL = "/api/contacts";
+const id = route.params.id;
+
+const contact = ref({});
+
+const fetchContact = async () => {
+	try {
+		const response = await axios.get(BASEURL + `/${id}`);
+		contact.value = response.data;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+const deleteContact = async () => {
+	try {
+		if (confirm("정말 삭제하시겠습니까?")) {
+			await axios.delete(BASEURL + `/${id}`);
+			router.push("/contacts");
+		}
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+fetchContact();
+</script>
+
+<template>
+	<div class="m-2">
+		<h3><i class="fa-solid fa-address-card"></i> 연락처</h3>
+		<div class="d-flex">
+			<img :src="contact.photo" alt="photo" width="130px" height="130px" />
+			<table class="ms-5">
+				<tr>
+					<td>ID</td>
+					<td>{{ contact.id }}</td>
+				</tr>
+				<tr>
+					<td>name</td>
+					<td>{{ contact.name }}</td>
+				</tr>
+				<tr>
+					<td>tel</td>
+					<td>{{ contact.tel }}</td>
+				</tr>
+				<tr>
+					<td>address</td>
+					<td>{{ contact.address }}</td>
+				</tr>
+				<tr>
+					<button
+						class="btn btn-sm btn-primary"
+						@click="router.push('/contacts')"
+					>
+						<i class="fa-solid fa-list"> 목록</i>
+					</button>
+					<button
+						class="btn btn-sm btn-primary"
+						@click="router.push('/contacts/edit/' + id)"
+					>
+						<i class="fa-solid fa-pen-to-square"> 수정</i>
+					</button>
+					<button class="btn btn-sm btn-danger" @click="deleteContact">
+						<i class="fa-solid fa-trash-can"> 삭제</i>
+					</button>
+				</tr>
+			</table>
+		</div>
+	</div>
+</template>
+
+<style scoped>
+img {
+	border-radius: 10px;
+}
+
+button {
+	margin: 10px 0 0 2px;
+}
+</style>
+
+
+문제6] src/pages/ContactWritePage.vue 작성
+<script setup>
+import axios from "axios";
+import { reactive } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const contactItem = reactive({ name: "", tel: "", address: "", photo: "" });
+const BASEURL = "/api/contacts";
+
+const writeContact = async ({ name, tel, address, photo }) => {
+	try {
+		const payload = { name, tel, address, photo };
+		if (confirm("이 상태로 추가하시겠습니까?")) {
+			await axios.post(BASEURL, payload);
+			router.push("/contacts");
+		}
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+const submitHandler = (e) => {
+	e.preventDefault();
+	let { name, tel } = contactItem;
+	if (!name || name.trim() === "") {
+		alert("이름은 필수 요소입니다.");
+		return;
+	} else if (!tel || tel.trim() === "") {
+		alert("전화번호는 필수 요소입니다.");
+		return;
+	}
+	writeContact({ ...contactItem });
+};
+</script>
+
+<template>
+	<div class="m-2">
+		<h3><i class="fa-solid fa-pen-to-square"></i> 새 연락처</h3>
+		<form>
+			<label>name:</label>
+			<input
+				type="text"
+				class="form-control"
+				placeholder="이름을 입력하세요."
+				v-model="contactItem.name"
+			/>
+			<label>tel:</label>
+			<input
+				type="text"
+				class="form-control"
+				placeholder="전화번호를 입력하세요."
+				v-model="contactItem.tel"
+			/>
+			<label>address:</label>
+			<input
+				type="text"
+				class="form-control"
+				placeholder="주소를 입력하세요."
+				v-model="contactItem.address"
+			/>
+			<label>photo url:</label>
+			<input
+				type="text"
+				class="form-control"
+				placeholder="사진의 url을 입력하세요."
+				v-model="contactItem.photo"
+			/>
+		</form>
+		<div class="buttonWrap">
+			<button
+				type="submit"
+				class="btn btn-sm btn-primary me-1"
+				@click="submitHandler"
+			>
+				<i class="fa-solid fa-check"> 확인</i>
+			</button>
+			<button
+				type="button"
+				class="btn btn-sm btn-primary"
+				@click="router.push('/contacts')"
+			>
+				<i class="fa-solid fa-rotate-left"> 취소</i>
+			</button>
+		</div>
+	</div>
+</template>
+
+<style scoped>
+label {
+	margin-top: 10px;
+}
+.buttonWrap {
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+}
+</style>
+
+
+문제7] src/pages/ContactEditPage.vue 작성
+<script setup>
+import axios from "axios";
+import { reactive } from "vue";
+import { useRoute, useRouter } from "vue-router";
+
+const route = useRoute();
+const router = useRouter();
+const contactItem = reactive({ name: "", tel: "", address: "", photo: "" });
+const BASEURL = "/api/contacts";
+const id = route.params.id;
+
+const fetchContact = async () => {
+	try {
+		const response = await axios.get(BASEURL + `/${id}`);
+		contactItem.name = response.data.name;
+		contactItem.tel = response.data.tel;
+		contactItem.address = response.data.address;
+		contactItem.photo = response.data.photo;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+const editContact = async ({ name, tel, address, photo }) => {
+	try {
+		const payload = { name, tel, address, photo };
+		if (confirm("이 상태로 수정하시겠습니까?")) {
+			await axios.put(BASEURL + `/${id}`, payload);
+			router.push("/contacts");
+		}
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+const submitHandler = (e) => {
+	e.preventDefault();
+	let { name, tel } = contactItem;
+	if (!name || name.trim() === "") {
+		alert("이름은 필수 요소입니다.");
+		return;
+	} else if (!tel || tel.trim() === "") {
+		alert("전화번호는 필수 요소입니다.");
+		return;
+	}
+	editContact({ ...contactItem });
+};
+
+fetchContact();
+</script>
+
+<template>
+	<div class="m-2">
+		<h3><i class="fa-solid fa-pen-to-square"></i> 연락처 수정</h3>
+		<form>
+			<label>name:</label>
+			<input
+				type="text"
+				class="form-control"
+				placeholder="이름을 입력하세요."
+				v-model="contactItem.name"
+			/>
+			<label>tel:</label>
+			<input
+				type="text"
+				class="form-control"
+				placeholder="전화번호를 입력하세요."
+				v-model="contactItem.tel"
+			/>
+			<label>address:</label>
+			<input
+				type="text"
+				class="form-control"
+				placeholder="주소를 입력하세요."
+				v-model="contactItem.address"
+			/>
+			<label>photo url:</label>
+			<input
+				type="text"
+				class="form-control"
+				placeholder="사진의 url을 입력하세요."
+				v-model="contactItem.photo"
+			/>
+		</form>
+		<div class="buttonWrap">
+			<button
+				type="submit"
+				class="btn btn-sm btn-primary me-1"
+				@click="submitHandler"
+			>
+				<i class="fa-solid fa-check"> 확인</i>
+			</button>
+			<button
+				type="button"
+				class="btn btn-sm btn-primary"
+				@click="router.push('/contacts')"
+			>
+				<i class="fa-solid fa-rotate-left"> 취소</i>
+			</button>
+		</div>
+	</div>
+</template>
+
+<style scoped>
+label {
+	margin-top: 10px;
+}
+.buttonWrap {
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+}
+</style>
+
+
+
+
+
