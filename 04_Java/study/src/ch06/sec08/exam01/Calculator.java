@@ -16,6 +16,7 @@ public class Calculator {
     int plus(int x, int y) {
         int result = x + y;
         return result; //리턴값 지정;
+
     }
 
     //호출 시 두 정수 값을 전달받고,
