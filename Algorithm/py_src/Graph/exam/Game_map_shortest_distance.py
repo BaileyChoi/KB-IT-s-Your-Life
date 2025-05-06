@@ -2,15 +2,17 @@ from collections import deque
 
 
 def solution(maps):
+    dx = [-1, 1, 0, 0]  # 행 이동(상하좌우)
+    dy = [0, 0, -1, 1]  # 열 이동(상하좌우)
+
+    n = len(maps)  # 행 길이
+    m = len(maps[0])  # 열 길이
+
     queue = deque()
-
-    dx = [-1, 1, 0, 0]  # 행 이동
-    dy = [0, 0, -1, 1]  # 열 이동
-
-    n = len(maps)  # 행
-    m = len(maps[0])  # 열
+    visited = [[False] * m for _ in range(n)]
 
     queue.append((0, 0))  # 시작점
+    visited[0][0] = True
 
     while queue:
         x, y = queue.popleft()
@@ -20,7 +22,13 @@ def solution(maps):
             ny = y + dy[i]
 
             # 갈 수 있는 길인지 확인
-            if 0 <= nx < n and 0 <= ny < m and maps[nx][ny] == 1:
+            if (
+                0 <= nx < n
+                and 0 <= ny < m
+                and maps[nx][ny] == 1
+                and not visited[nx][ny]
+            ):
+                visited[nx][ny] = True
                 queue.append((nx, ny))
                 maps[nx][ny] = maps[x][y] + 1
 
