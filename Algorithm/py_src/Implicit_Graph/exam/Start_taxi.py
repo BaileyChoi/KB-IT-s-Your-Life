@@ -20,6 +20,7 @@ for i in range(M):
     cRow, cCol, cARow, cACol = list(map(int, input().split()))
     customer[(cRow - 1, cCol - 1)] = (cARow - 1, cACol - 1)
 
+
 # 현재 택시 위치에서 승객까지의 최단거리
 def getCust(r, c):
     queue = deque([(r, c, 0)])
@@ -32,19 +33,17 @@ def getCust(r, c):
         if curDist > minDist:
             break
         if (curRow, curCol) in customer:
-            if curDist < minDist:
-                candidate = [(curRow, curCol)]
-                minDist = curDist
-            elif curDist == minDist:
-                candidate.append((curRow, curCol))
+            candidate.append((curRow, curCol))
+            minDist = curDist
         for dr, dc in [[-1, 0], [1, 0], [0, 1], [0, -1]]:
-            nextRow, nextCol, nextDist = curRow + dr, curCol + dc, curDist + 1
-            if 0 <= nextRow < N and 0 <= nextCol < M and board[nextRow][nextCol] != 1:
-                  if (nextRow, nextCol) not in visited:
-                    queue.append((nextRow, nextCol, nextDist))
+            nextRow, nextCol = curRow + dr, curCol + dc
+            if 0 <= nextRow < N and 0 <= nextCol < N and board[nextRow][nextCol] != 1:
+                if (nextRow, nextCol) not in visited:
+                    queue.append((nextRow, nextCol, curDist + 1))
                     visited.add((nextRow, nextCol))
 
     return candidate, minDist
+
 
 # 도착지까지 승객 이동
 def arriveCust(r, c):
@@ -58,18 +57,19 @@ def arriveCust(r, c):
         if curRow == cARow and curCol == cACol:
             return curRow, curCol, curDist
         for dr, dc in [[-1, 0], [1, 0], [0, 1], [0, -1]]:
-            nextRow, nextCol, nextDist = curRow + dr, curCol + dc, curDist + 1
-            if 0 <= nextRow < N and 0 <= nextCol < M and board[nextRow][nextCol] != 1:
+            nextRow, nextCol = curRow + dr, curCol + dc
+            if 0 <= nextRow < N and 0 <= nextCol < N and board[nextRow][nextCol] != 1:
                 if (nextRow, nextCol) not in visited:
-                    queue.append((nextRow, nextCol, nextDist))
+                    queue.append((nextRow, nextCol, curDist + 1))
                     visited.add((nextRow, nextCol))
 
     return cARow, cACol, 1000000
 
+
 answer = 0
 
 # 남아있는 승객이 있다면 반복문 수행
-while fuel > 0 and customer:
+while fuel > 0 and len(customer) != 0:
     # BFS로 현재 택시 위치로부터 승객까지의 최단거리 계산
     cand, usedFuel = getCust(departRow, departCol)
 
@@ -89,9 +89,8 @@ while fuel > 0 and customer:
     departRow, departCol = cARow, cACol
 # 이동 성공 여부에 따라 출력값 결정
 if answer == -1:
-    # 승객 이동시키기에 실패한다면 -1 출력 
+    # 승객 이동시키기에 실패한다면 -1 출력
     print(-1)
 else:
     # 성공한다면 남은 연료 출력
     print(fuel)
-    
