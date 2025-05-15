@@ -1,3 +1,5 @@
+USE universitydb;
+
 SELECT * FROM student;
 SELECT * FROM course;
 SELECT result FROM score;
