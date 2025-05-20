@@ -1,0 +1,13 @@
+USE sqldb;
+SELECT * FROM buyTBL;
+
+SELECT @@autocommit;
+
+START TRANSACTION;
+DELETE FROM buytbl WHERE num = 1;
+DELETE FROM buytbl WHERE num = 2;
+SELECT * FROM buyTBL;
+
+ROLLBACK;
+
+SELECT * FROM buyTBL;
