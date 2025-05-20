@@ -139,6 +139,18 @@ FROM employees E
 		ON DE.dept_no = D.dept_no
 WHERE E.emp_no = 10209;
 
+CREATE TABLE sellings (
+	car_id INT,
+    employee_id INT PRIMARY KEY,
+    created_at DATETIME,
+    price INT
+);
+INSERT INTO `sqldb`.`sellings` (`car_id`, `employee_id`, `created_at`, `price`) VALUES ('352', '2455', '2016-08-16 02:52:10', '3700');
+INSERT INTO `sqldb`.`sellings` (`car_id`, `employee_id`, `created_at`, `price`) VALUES ('352', '2499', '2016-11-26 01:33:15', '6200');
+INSERT INTO `sqldb`.`sellings` (`car_id`, `employee_id`, `created_at`, `price`) VALUES ('352', '3010', '2016-11-06 11:35:44', '10800');
+INSERT INTO `sqldb`.`sellings` (`car_id`, `employee_id`, `created_at`, `price`) VALUES ('306', '2955', '2016-12-25 06:55:46', '1000');
+SELECT * FROM sellings;
+
 USE sqldb;
 SELECT SUM(price) AS 판매액
 FROM sellings
