@@ -1,0 +1,34 @@
+travelapp/
+├── build.gradle                # 프로젝트 빌드 설정 파일 (의존성과 애플리케이션 정보)
+├── settings.gradle             # 루트 프로젝트 이름 설정
+├── travel-image/               # 관광지 JPG 데이터 폴더
+├── travel.csv                  # 관광지 CSV 데이터 파일
+├── travel.sql                  # SQL 초기 데이터 쿼리
+└── src/
+    ├── main/
+    │   ├── java/
+    │   │   └── org.scoula/
+    │   │       ├── database/
+    │   │       │   └── JDBCUtil.java             # DB 연결 및 종료 유틸리티 클래스 (getConnection, close)
+    │   │       └── travel/
+    │   │           ├── app/
+    │   │           │   ├── TravelApp.java        # 메인 실행 클래스 (사용자 메뉴 출력, 입력 받아 명령 실행)
+    │   │           │   └── MenuItem.java         # 메뉴 항목 클래스 (메뉴 항목 데이터, 제목과 실행할 Runnable 명령 포함)
+    │   │           ├── dao/
+    │   │           │   ├── TravelDao.java        # DAO 인터페이스 (insert, getTotalCount, getDistricts, getTravels, getTravel)
+    │   │           │   └── TravelDaoImpl.java    # DAO 구현체 (SQL 실행 통해 DB 접근 수행)
+    │   │           ├── dataImport/
+    │   │           │   ├── ImportImageData.java  # 이미지 데이터 import
+    │   │           │   └── ImportTravelData.java # 관광지 데이터 import
+    │   │           ├── domain/
+    │   │           │   ├── TravelVO.java         # 관광지 정보 VO 클래스 (번호, 권역, 제목, 설명, 주소, 전화 등 필드와 이미지 리스트 포함)
+    │   │           │   └── TravelImageVO.java    # 관광지 이미지 정보 VO 클래스 (번호, 파일명, 관광지 번호 포함)
+    │   │           ├── service/
+    │   │           │   ├── TravelService.java        # 서비스 인터페이스 (printTravels, printTravelsByDistrict, printTravelsByPage, printTravel)
+    │   │           │   └── TravelServiceImpl.java    # 서비스 구현체 (DAO에서 받은 데이터를 사용자에게 출력)
+    │   │           ├── CSVTest1.java             # CSV 테스트용 클래스 1
+    │   │           └── CSVTest2.java             # CSV 테스트용 클래스 2
+    │   └── resources/
+    │       └── application.properties     # DB 접속 설정 파일
+    └── test/                   # 테스트용 파일 (비어 있거나 미작성)
+
