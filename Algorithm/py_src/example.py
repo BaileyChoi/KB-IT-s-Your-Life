@@ -6,14 +6,14 @@ file_path = os.path.join(os.path.dirname(__file__), "example.txt")
 sys.stdin = open(file_path, "r")
 
 # 백준 입력값 처리
-N, M, K = map(int, input().split())
+N, M = map(int, input().split())
 board = [list(map(int, input())) for _ in range(N)]
 
 
-def solution(N, M, K, board):
+def solution(N, M, board):
     # BFS 최단거리 구하기
     queue = deque()
-    visited = [[[False] * (K + 1) for _ in range(M)] for _ in range(N)]
+    visited = [[[False] * 2 for _ in range(M)] for _ in range(N)]
     # 시작점 예약
     queue.append((0, 0, 1, 0))
     visited[0][0][0] = True
@@ -40,13 +40,13 @@ def solution(N, M, K, board):
                 # 벽인데 부술 기회가 남아있는 경우
                 elif (
                     board[nextR][nextC] == 1
-                    and broke < K
-                    and not visited[nextR][nextC][broke + 1]
+                    and broke == 0
+                    and not visited[nextR][nextC][1]
                 ):
-                    queue.append((nextR, nextC, dist + 1, broke + 1))
-                    visited[nextR][nextC][broke + 1] = True
+                    queue.append((nextR, nextC, dist + 1, 1))
+                    visited[nextR][nextC][1] = True
 
     return -1
 
 
-print(solution(N, M, K, board))
+print(solution(N, M, board))
