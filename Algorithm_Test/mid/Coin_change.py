@@ -1,6 +1,5 @@
 from collections import deque
 
-
 def solution(coins, amount):
     # BFS로 최소 동전수 구하기
     queue = deque()
@@ -27,7 +26,6 @@ def solution(coins, amount):
                 visited[next] = True
 
     return -1
-
 
 # 테스트
 print(solution([1, 2, 5], 11))
