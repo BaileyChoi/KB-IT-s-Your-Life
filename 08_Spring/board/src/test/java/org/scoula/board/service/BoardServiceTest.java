@@ -46,7 +46,6 @@ class BoardServiceTest {
     @Test
     void update() {
         BoardDTO board = service.getOne(1L);
-
         board.setTitle("제목 수정됨");
 
         log.info("update RESULT: " + service.update(board));

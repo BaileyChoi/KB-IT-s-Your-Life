@@ -9,6 +9,7 @@
         <![CDATA[
             select *
             from tbl_board
+            order by no desc
             ]]>
     </select>
 
