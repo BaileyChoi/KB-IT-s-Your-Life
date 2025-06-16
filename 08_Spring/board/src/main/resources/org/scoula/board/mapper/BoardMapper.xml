@@ -7,16 +7,19 @@
 
     <select id="getList" resultType="BoardVO">
         <![CDATA[
-            select *
-            from tbl_board
-            order by no desc
-            ]]>
-    </select>
-
-    <select id="getOne" resultType="org.scoula.board.domain.BoardVO">
         select *
         from tbl_board
-        where no = #{no}
+        order by no desc
+        ]]>
+    </select>
+
+    <select id="getOne" resultMap="boardMap">
+        select b.*, a.no as ano, a.filename, a.path, a.content_type, a.size, a.reg_date as a_reg_date
+        from tbl_board b
+                 left outer join tbl_board_attachment a
+                                 on b.no = a.bno
+        where b.no = #{no}
+        order by filename
     </select>
 
     <insert id="create">
@@ -30,9 +33,9 @@
 
     <update id="update">
         update tbl_board
-        set title = #{title},
-            content = #{content},
-            writer = #{writer},
+        set title       = #{title},
+            content     = #{content},
+            writer      = #{writer},
             update_date = now()
         where no = #{no}
     </update>
@@ -42,5 +45,61 @@
         from tbl_board
         where no = #{no}
     </delete>
+
+    <insert id="createAttachment">
+        insert into tbl_board_attachment(filename, path, content_type, size, bno)
+        values (#{filename},
+                #{path},
+                #{contentType},
+                #{size},
+                #{bno})
+    </insert>
+
+    <select id="getAttachmentList" resultType="org.scoula.board.domain.BoardAttachmentVO">
+        select *
+        from tbl_board_attachment
+        where bno = #{bno}
+        order by filename
+    </select>
+
+    <select id="getAttachment" resultType="org.scoula.board.domain.BoardAttachmentVO">
+        select *
+        from tbl_board_attachment
+        where no = #{no}
+    </select>
+
+    <!-- 게시글 번호(bno)로 첨부파일 전체 삭제 -->
+<!--    <delete id="deleteAttachmentsByBoard">-->
+<!--        delete-->
+<!--        from tbl_board_attachment-->
+<!--        where bno = #{bno}-->
+<!--    </delete>-->
+
+    <!-- 첨부파일 번호(no)로 한 개 삭제 -->
+    <delete id="deleteAttachment">
+        delete
+        from tbl_board_attachment
+        where no = #{no}
+    </delete>
+
+    <resultMap id="attachmentMap" type="org.scoula.board.domain.BoardAttachmentVO">
+        <id column="ano" property="no"/>
+        <result column="bno" property="bno"/>
+        <result column="filename" property="filename"/>
+        <result column="path" property="path"/>
+        <result column="contentType" property="contentType"/>
+        <result column="size" property="size"/>
+        <result column="a_reg_date" property="regDate"/>
+    </resultMap>
+
+    <resultMap id="boardMap" type="org.scoula.board.domain.BoardVO">
+        <id column="no" property="no"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="writer" property="writer"/>
+        <result column="reg_date" property="regDate"/>
+        <result column="update_date" property="updateDate"/>
+        <collection property="attaches" resultMap="attachmentMap"/>
+    </resultMap>
 
 </mapper>
