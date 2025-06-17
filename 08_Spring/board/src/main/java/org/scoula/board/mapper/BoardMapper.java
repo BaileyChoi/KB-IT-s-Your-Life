@@ -23,5 +23,5 @@ public interface BoardMapper {
 
     public BoardAttachmentVO getAttachment(Long no);
 
-    public int deleteAttachment(Long no);
+    public int deleteAttachmentByBoard(Long no);
 }

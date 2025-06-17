@@ -83,10 +83,11 @@ public class BoardServiceImpl implements BoardService {
         return mapper.update(board.toVo()) == 1;
     }
 
-    @Transactional
     @Override
     public boolean delete(Long no) {
         log.info("delete............." + no);
+
+        mapper.deleteAttachmentByBoard(no);
 
         return mapper.delete(no) == 1;
     }
@@ -99,7 +100,7 @@ public class BoardServiceImpl implements BoardService {
 
     // 첨부파일 삭제
     @Override
-    public boolean deleteAttachment(Long no) {
-        return mapper.deleteAttachment(no) == 1;
+    public boolean deleteAttachmentByBoard(Long no) {
+        return mapper.deleteAttachmentByBoard(no) == 1;
     }
 }

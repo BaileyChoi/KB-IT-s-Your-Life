@@ -68,18 +68,10 @@
         where no = #{no}
     </select>
 
-    <!-- 게시글 번호(bno)로 첨부파일 전체 삭제 -->
-<!--    <delete id="deleteAttachmentsByBoard">-->
-<!--        delete-->
-<!--        from tbl_board_attachment-->
-<!--        where bno = #{bno}-->
-<!--    </delete>-->
-
-    <!-- 첨부파일 번호(no)로 한 개 삭제 -->
-    <delete id="deleteAttachment">
+    <delete id="deleteAttachmentByBoard">
         delete
         from tbl_board_attachment
-        where no = #{no}
+        where bno = #{bno}
     </delete>
 
     <resultMap id="attachmentMap" type="org.scoula.board.domain.BoardAttachmentVO">

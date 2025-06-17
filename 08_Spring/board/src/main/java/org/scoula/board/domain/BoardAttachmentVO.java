@@ -28,7 +28,8 @@ public class BoardAttachmentVO {
                 .bno(bno)
                 .filename(part.getOriginalFilename())
                 .path(path)
-                .contentType(part.getContentType()).size(part.getSize())
+                .contentType(part.getContentType())
+                .size(part.getSize())
                 .build();
     }
 

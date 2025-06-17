@@ -16,12 +16,21 @@
         </div>
         <div>
             <label>작성자</label>
-            <input name="writer" class="form-control" value="${board.writer}"></div>
+            <input name="writer" class="form-control" value="${board.writer}">
+        </div>
+        <div>
+            <label>첨부파일</label>
+            <c:forEach var="file" items="${board.attaches}">
+                <div class="attach-file-item">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                            ${file.filename} (${file.fileSize})<br>
+                </div>
+            </c:forEach>
+        </div>
         <div>
             <label>내용</label>
             <textarea class="form-control" name="content" rows="10">${board.content}</textarea>
         </div>
-
         <div class="mt-4">
             <button type="submit" class="btn btn-primary">
                 <i class="fas fa-check"></i> 확인
