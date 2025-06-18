@@ -66,4 +66,4 @@ ehthumbs.db
 .env.*
 
 ### Javadoc output ###
-/document/
+**/document/
