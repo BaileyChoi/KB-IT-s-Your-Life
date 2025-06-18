@@ -1,4 +1,4 @@
-package org.scoula.common.util;
+package org.scoula.util;
 
 public class UploadFileName {
     public static String getUniqueName(String filename) {
