@@ -105,14 +105,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
-                //일단모든접근허용
+                .antMatchers(HttpMethod.POST, "/api/member").authenticated()
+                .antMatchers(HttpMethod.PUT, "/api/member", "/api/member/*/changepassword").authenticated()
                 .anyRequest().permitAll();
 
         http
-                .httpBasic().disable() //기본HTTP인증비활성화
-                .csrf().disable() //CSRF비활성화
-                .formLogin().disable() //formLogin비활성화관련필터해제
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); //세션생성모드설정
+                .httpBasic().disable() // 기본 HTTP 인증 비활성화
+                .csrf().disable() // CSRF 비활성화
+                .formLogin().disable() // formLogin 비활성화  관련필터해제
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // 세션 생성 모드 설정
     }
 
     @Override

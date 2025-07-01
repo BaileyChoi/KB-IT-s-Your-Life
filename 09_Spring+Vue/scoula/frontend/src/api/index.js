@@ -13,7 +13,7 @@ instance.interceptors.request.use(
 		// config.headers : 요청헤더
 		// JWT 추출
 		const { getToken } = useAuthStore();
-		consttoken = getToken();
+		const token = getToken();
 		if (token) {
 			// 토큰이 있는 경우
 			config.headers["Authorization"] = `Bearer${token}`;

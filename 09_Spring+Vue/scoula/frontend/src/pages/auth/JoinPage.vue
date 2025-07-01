@@ -43,7 +43,7 @@ const changeUsername = () => {
 
 const join = async () => {
 	if (member.password != member.password2) {
-		returnalert("비밀번호가 일치하지 않습니다.");
+		return alert("비밀번호가 일치하지 않습니다.");
 	}
 
 	if (avatar.value.files.length > 0) {

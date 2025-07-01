@@ -1,4 +1,4 @@
-import api from "axios";
+import api from "@/api";
 
 const BASE_URL = "/api/member";
 const headers = { "Content-Type": "multipart/form-data" };
@@ -12,7 +12,7 @@ export default {
 	},
 
 	async create(member) {
-		// 아바타 파일 업로드 - multipart 인토딩 필요 -> FormData 객체 사용
+		// 아바타 파일 업로드 - multipart 인코딩 필요 -> FormData 객체 사용
 		const formData = new FormData();
 		formData.append("username", member.username);
 		formData.append("email", member.email);
@@ -25,6 +25,36 @@ export default {
 		const { data } = await api.post(BASE_URL, formData, headers);
 
 		console.log("AUTH POST: ", data);
+		return data;
+	},
+
+	async update(member) {
+		const formData = new FormData();
+		formData.append("username", member.username);
+		formData.append("email", member.email);
+		formData.append("password", member.password);
+
+		if (member.avatar) {
+			formData.append("avatar", member.avatar);
+		}
+
+		const { data } = await api.put(
+			`${BASE_URL}/${member.username}`,
+			formData,
+			headers
+		);
+
+		console.log("AUTH PUT: ", data);
+		return data;
+	},
+
+	async changePassword(formData) {
+		const { data } = await api.put(
+			`${BASE_URL}/${formData.username}/changepassword`,
+			formData
+		);
+
+		console.log("AUTH PUT: ", data);
 		return data;
 	},
 };
