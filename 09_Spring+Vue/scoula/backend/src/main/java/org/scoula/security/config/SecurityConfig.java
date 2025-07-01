@@ -83,7 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // 접근 제한무시경로설정–resource
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/assets/**", "/*", "/api/member/**",
+        web.ignoring().antMatchers("/assets/**", "/*",
                 // Swagger 관련 url은 보안에서 제외
                 "/swagger-ui.html", "/webjars/**", "/swagger-resources/**", "/v2/api-docs"
         );
@@ -105,8 +105,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
-                .antMatchers(HttpMethod.POST, "/api/member").authenticated()
-                .antMatchers(HttpMethod.PUT, "/api/member", "/api/member/*/changepassword").authenticated()
+                .antMatchers(HttpMethod.POST, "/api/member").permitAll()
+                .antMatchers(HttpMethod.PUT, "/api/member/**").authenticated()
                 .anyRequest().permitAll();
 
         http
