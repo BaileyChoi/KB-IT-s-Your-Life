@@ -21,7 +21,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
-    private final static String BASE_DIR = "C:/KB_Bingbong/08_Spring/upload/board";
+    private final static String BASE_DIR = "C:/KB_Bingbong/09_Spring+Vue/upload/board";
     final private BoardMapper mapper;
 
     @Override
@@ -82,6 +82,12 @@ public class BoardServiceImpl implements BoardService {
         log.info("update.............." + board);
 
         mapper.update(board.toVo());
+
+        // 파일업로드처리
+        List<MultipartFile> files = board.getFiles();
+        if (files != null && !files.isEmpty()) {
+            upload(board.getNo(), files);
+        }
 
         return getOne(board.getNo());
     }

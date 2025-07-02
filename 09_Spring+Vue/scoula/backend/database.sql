@@ -34,7 +34,6 @@ values ('admin', '$2a$10$EsIMfxbJ6NuvwX7MDj4WqOYFzLU9U/lddCyn0nic5dFo3VfJYrXYC',
 select *
 from tbl_member;
 
-
 insert into tbl_member_auth(username, auth)
 values ('admin', 'ROLE_ADMIN'),
        ('admin', 'ROLE_MANAGER'),
@@ -49,3 +48,18 @@ values ('admin', 'ROLE_ADMIN'),
 select *
 from tbl_member_auth
 order by auth;
+
+-- 게시글 테이블
+SELECT b.*,
+       a.no as    ano,
+       a.bno,
+       a.filename,
+       a.path,
+       a.content_type,
+       a.size,
+       a.reg_date a_reg_date
+FROM tbl_board b
+         LEFT OUTER JOIN tbl_board_attachment a
+                         ON b.no = a.bno
+WHERE b.no = a.bno
+ORDER BY filename;

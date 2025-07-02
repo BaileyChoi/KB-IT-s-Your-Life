@@ -1,0 +1,20 @@
+Gallery.vue - 공유데이터
+GalleryView.vue - 큰 이미지
+GalleryList.vue
+GalleryListItem.vue
+
+{ id: 1, img: './image/dog01.jpg', title: '째려보는 강아지'},
+{ id: 2, img: './image/dog02.jpg', title: '늘어져있는 강아지'},
+{ id: 3, img: './image/dog03.jpg', title: '날 바라보는 강아지'},
+{ id: 4, img: './image/dog04.jpg', title: '새침한 강아지'},
+{ id: 5, img: './image/dog05.jpg', title: '먼 곳을 바라보는 강아지'},
+{ id: 6, img: './image/dog06.jpg', title: '포즈를 취하는 강아지'},
+{ id: 7, img: './image/dog07.jpg', title: '밥그릇에 들어간 강아지'},
+{ id: 8, img: './image/dog08.jpg', title: '아련한 눈빛의 강아지'},
+
+각 컴포넌트별로 css 잡아주고, 데이터는 Provide로 공유
+
+화면에 나타나는 결과는 위에 큰 이미지가 뜨고
+바로 아래에 작은 이미지 8개를 나열 - scope를 사용
+
+이미지를 클릭하면 위에 크게 보이게 해주는 Vue 코드를 작성
