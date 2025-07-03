@@ -2,11 +2,15 @@ package org.scoula.board.mapper;
 
 import org.scoula.board.domain.BoardAttachmentVO;
 import org.scoula.board.domain.BoardVO;
+import org.scoula.common.pagination.PageRequest;
 
 import java.util.List;
 
 public interface BoardMapper {
-    //    @Select("SELECT * FROM tbl_board ORDER BY no DESC")
+    int getTotalCount();
+
+    List<BoardVO> getPage(PageRequest pageRequest);
+
     public List<BoardVO> getList();
 
     public BoardVO getOne(Long no);

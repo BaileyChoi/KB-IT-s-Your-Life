@@ -1,0 +1,5 @@
+모듈평가는 security 전까지
+apiserver까지
+교과목평가는security까지 
+
+vue는 평가에 안들어감

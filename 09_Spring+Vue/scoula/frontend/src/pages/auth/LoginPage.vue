@@ -1,8 +1,9 @@
 <script setup>
 import { computed, reactive, ref } from "vue";
 import { useAuthStore } from "@/stores/auth";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
+const cr = useRoute();
 const router = useRouter();
 const auth = useAuthStore();
 
@@ -16,13 +17,16 @@ const error = ref("");
 const disableSubmit = computed(() => !(member.username && member.password));
 
 const login = async () => {
-	console.log(member);
 	try {
 		await auth.login(member);
-		router.push("/");
+		if (cr.query.next) {
+			// 로그인 후 이동할 페이지가 있는 경우
+			router.push({ name: cr.query.next });
+		} else {
+			// 일반 로그인
+			router.push("/");
+		}
 	} catch (e) {
-		// 로그인 에러
-		console.log("에러=======", e);
 		error.value = e.response.data;
 	}
 };
@@ -34,6 +38,9 @@ const login = async () => {
 			<i class="fa-solid fa-right-to-bracket"> </i>
 			로그인
 		</h1>
+		<h5 class="text-danger" v-if="cr.query.next">
+			로그인 후 이용하실 수 있는 기능입니다.
+		</h5>
 
 		<form @submit.prevent="login">
 			<div class="mb-3 mt-3">
