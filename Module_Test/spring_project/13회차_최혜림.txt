@@ -1,0 +1,93 @@
+-- -----------------------------------------
+-- 	spring mvc기본 문제
+-- -----------------------------------------
+-- 	문제 1번
+-- -----------------------------------------
+
+// BoardMapper.xml
+<insert id="create">
+        insert into tbl_board (title, content, writer)
+        values (#{title}, #{content}, #{writer})
+</insert>
+
+-- -----------------------------------------
+-- 	문제 2번
+-- -----------------------------------------
+
+// BoardMapper.xml
+<select id="getList" resultType="org.scoula.board.domain.BoardVO">
+        select * from tbl_board
+        order by no desc
+</select>
+
+// list.jsp
+<c:forEach var="board" items="${list}">
+        <tr>
+            <td>${board.no}</td>
+            <td><a href="get?no=${board.no}">${board.title}</a></td>
+            <td>${board.writer}</td>
+            <td>${board.regDate}</td>
+        </tr>
+</c:forEach>
+
+-- -----------------------------------------
+-- 	문제 3번
+-- -----------------------------------------
+
+// BoardMapper.xml
+<select id="get" resultType="org.scoula.board.domain.BoardVO">
+        select * from tbl_board
+        where no = #{no}
+</select>
+
+// get.jsp
+<h1 class="page-header my-4">
+    <i class="far fa-file-alt"></i>
+    <!-- 문제 3 : 제목 출력 -->${board.title}</h1>
+
+<div class="d-flex justify-content-between">
+    <div><i class="fas fa-user"></i>
+        <!-- 문제 3 : 작성자 출력 -->${board.writer}</div>
+    <div>
+        <i class="fas fa-clock"></i>
+        <!-- 문제 3 : 날짜 출력 -->${board.regDate}
+    </div>
+</div>
+<hr>
+
+<div>
+    <!-- 문제 3 : 내용 출력 -->
+    ${board.content}
+</div>
+
+// BoardController.java
+@GetMapping("/get")
+public void get(@RequestParam("no") Long no, Model model) {
+        model.addAttribute("board", service.get(no));
+}
+
+-- -----------------------------------------
+-- 	spring rest 문제
+-- -----------------------------------------
+-- 	문제 4번
+-- -----------------------------------------
+
+// BoardApiController.java
+@GetMapping("/list")
+public List<BoardVO> getList() {
+        return service.getList();
+}
+
+
+-- -----------------------------------------
+-- 	문제 5번
+-- -----------------------------------------
+
+// BoardApiController.java
+@GetMapping("/{no}")
+public ResponseEntity<BoardVO> get(@PathVariable Long no) {
+        return ResponseEntity.ok(service.get(no));
+}
+
+
+
