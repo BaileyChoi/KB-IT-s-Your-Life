@@ -36,7 +36,7 @@ const download = async (no) => {
 const load = async () => {
 	article.value = await api.get(no);
 
-	console.log("DETAIL", article.value);
+	// console.log("DETAIL", article.value);
 };
 
 load();

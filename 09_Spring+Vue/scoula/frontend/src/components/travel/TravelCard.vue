@@ -3,7 +3,7 @@ import { useRoute } from "vue-router";
 
 const cr = useRoute();
 const props = defineProps({
-	travel: { Type: Object, required: true },
+	travel: { type: Object, required: true },
 });
 </script>
 

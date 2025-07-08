@@ -8,6 +8,10 @@ import VueAwesomePaginate from "vue-awesome-paginate";
 
 import App from "./App.vue";
 import router from "./router";
+import { useKakao } from "vue3-kakao-maps";
+
+const rest_api_key = "d4a73e9455bb1a2570daaa2c91634efb";
+useKakao(rest_api_key, ["services"]);
 
 const app = createApp(App);
 

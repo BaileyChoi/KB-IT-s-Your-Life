@@ -30,7 +30,7 @@ const handlePageChange = async (pageNum) => {
 
 // pageRequest의 값이 변경된 경우 호출
 watch(cr, async (newValue) => {
-	console.log("WATCH", cr.query.page);
+	// console.log("WATCH", cr.query.page);
 
 	pageRequest.page = parseInt(cr.query.page);
 	pageRequest.amount = parseInt(cr.query.amount);
@@ -41,7 +41,7 @@ watch(cr, async (newValue) => {
 const load = async (query) => {
 	try {
 		page.value = await api.getList(query);
-		console.log(page.value);
+		// console.log(page.value);
 	} catch {}
 };
 

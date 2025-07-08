@@ -37,7 +37,7 @@ watch(cr, async () => {
 const load = async (query) => {
 	try {
 		page.value = await api.getList(query);
-		console.log(page.value);
+		// console.log(page.value);
 	} catch (e) {
 		console.error(e);
 	}

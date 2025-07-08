@@ -8,7 +8,7 @@ export default {
 	async getList(params) {
 		const { data } = await api.get(BASE_URL, { params });
 
-		console.log("BOARD GET LIST: ", data);
+		// console.log("BOARD GET LIST: ", data);
 		return data;
 	},
 
@@ -27,14 +27,14 @@ export default {
 		}
 
 		const { data } = await api.post(BASE_URL, formData, { headers });
-		console.log("BOARD POST: ", data);
+		// console.log("BOARD POST: ", data);
 		return data;
 	},
 
 	// 게시글 상세
 	async get(no) {
 		const { data } = await api.get(`${BASE_URL}/${no}`);
-		console.log("BOARD GET", data);
+		// console.log("BOARD GET", data);
 		return data;
 	},
 
@@ -56,14 +56,14 @@ export default {
 		const { data } = await api.put(`${BASE_URL}/${article.no}`, formData, {
 			headers,
 		});
-		console.log("BOARD POST: ", data);
+		// console.log("BOARD POST: ", data);
 		return data;
 	},
 
 	// 게시글 삭제
 	async delete(no) {
 		const { data } = await api.delete(`${BASE_URL}/${no}`);
-		console.log("BOARD DELETE: ", data);
+		// console.log("BOARD DELETE: ", data);
 		return data;
 	},
 
@@ -71,7 +71,7 @@ export default {
 	async deleteAttachment(no) {
 		const { data } = await api.delete(`${BASE_URL}/deleteAttachment/${no}`);
 
-		console.log("ATTACHMENT DELETE: ", data);
+		// console.log("ATTACHMENT DELETE: ", data);
 		return data;
 	},
 };

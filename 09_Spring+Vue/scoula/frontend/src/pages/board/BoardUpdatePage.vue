@@ -42,7 +42,7 @@ const reset = () => {
 	article.writer = orgArticle.value.writer;
 	article.content = orgArticle.value.content;
 
-	console.log(article);
+	// console.log(article);
 };
 const load = async () => {
 	const data = await boardApi.get(no);
